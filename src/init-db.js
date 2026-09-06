@@ -1,17 +1,13 @@
-import { resolve } from 'node:path';
+import { mkdirSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 
 import { openDatabase } from './db.js';
 
-const databasePath = process.argv[2];
+const databasePath = resolve('db/emails.sqlite3');
+mkdirSync(dirname(databasePath), { recursive: true });
 
-if (!databasePath) {
-  console.error('Usage: npm run db:init -- <database>');
-  process.exit(1);
-}
-
-const resolvedPath = resolve(databasePath);
-const db = openDatabase(resolvedPath);
+const db = openDatabase(databasePath);
 const { user_version: version } = db.prepare('PRAGMA user_version').get();
 db.close();
 
-console.log(`Initialized ${resolvedPath} (schema v${version})`);
+console.log(`Initialized ${databasePath} (schema v${version})`);
