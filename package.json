@@ -5,7 +5,8 @@
   "type": "module",
   "packageManager": "npm@11.19.1",
   "scripts": {
-    "db:init": "node src/init-db.js"
+    "db:init": "node src/init-db.js",
+    "db:import": "node src/import-mbox.js"
   },
   "engines": {
     "node": ">=24"
