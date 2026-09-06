@@ -3,7 +3,7 @@
 Import Gmail Takeout MBOX archives into SQLite.
 
 ```sh
-npm run db:init -- ./archive.sqlite
+npm run db:init
 ```
 
-Database migrations live in `migrations/` and are applied automatically.
+The database is created at `db/emails.sqlite3`. Database migrations live in `migrations/` and are applied automatically.
